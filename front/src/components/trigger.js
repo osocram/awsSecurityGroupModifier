@@ -17,7 +17,6 @@ function Trigger({ setInfo, info }) {
 
     const requestOptions = {
       method: "PUT",
-      //mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
