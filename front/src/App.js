@@ -18,7 +18,8 @@ function App() {
   useEffect(() => {
     function start() {
       gapi.client.init({
-        clientId: process.env.REACT_GOOGLE_CLIENTID,
+        //clientId: process.env.REACT_APP_GOOGLE_CLIENTID,
+        clientId: process.env.REACT_APP_GOOGLE_CLIENTID,
         scope: "",
       });
       getData();
@@ -52,6 +53,7 @@ function App() {
           <LoginButton setInfo={setAwsInfo} />
           <h2>Your IP Address is</h2>
           <h4>{awsInfo.ip}</h4>
+          {awsInfo.msg !== "" && <h2>Resposta: {awsInfo.msg}</h2>}
         </div>
       )}
     </div>
