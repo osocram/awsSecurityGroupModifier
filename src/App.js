@@ -18,7 +18,6 @@ function App() {
   useEffect(() => {
     function start() {
       gapi.client.init({
-        //clientId: process.env.REACT_APP_GOOGLE_CLIENTID,
         clientId: process.env.REACT_APP_GOOGLE_CLIENTID,
         scope: "",
       });

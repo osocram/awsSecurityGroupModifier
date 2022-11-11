@@ -5,3 +5,10 @@ export const initialConfig = {
   loggedIn: false,
   msg: "",
 };
+
+export const initialConfigIP = {
+  email: "",
+  name: "",
+  loggedIn: false,
+  msg: "",
+};

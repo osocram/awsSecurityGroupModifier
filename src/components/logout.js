@@ -1,10 +1,11 @@
 import React from "react";
 import { GoogleLogout } from "react-google-login";
 import { initialConfig } from "../utils";
+import { initialConfigIP } from "../utils";
 
 function Logout({ setInfo }) {
   const onSuccess = () => {
-    setInfo(initialConfig);
+    setInfo(initialConfigIP);
     alert("Logout made successfully");
   };
 
