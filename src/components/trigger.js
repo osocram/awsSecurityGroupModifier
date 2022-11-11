@@ -22,7 +22,7 @@ function Trigger({ setInfo, info }) {
       },
       body: JSON.stringify({ key1: info.ip, key2: info.name }),
     };
-    fetch("/staging", requestOptions)
+    fetch(process.env.REACT_APP_URL_API, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log("data - ", data);
