@@ -51,7 +51,6 @@ function Login({ setInfo }) {
     <div id="signInButton">
       <GoogleLogin
         clientId={process.env.REACT_APP_GOOGLE_CLIENTID}
-        //clientId="475815065806-rfv11tup457jgbsbqu8ikeiieet2h4o5.apps.googleusercontent.com"
         buttonText="Login"
         onSuccess={onSuccess}
         onFailure={onFailure}
