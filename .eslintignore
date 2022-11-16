@@ -1,0 +1,6 @@
+# build artifacts
+dist
+coverage
+build
+public
+config-overrides.js

@@ -1,0 +1,7 @@
+package-lock.json
+yarn.lock
+package.json
+dist/
+*.tsbuildinfo
+*.svg
+*/**/CHANGELOG.md
