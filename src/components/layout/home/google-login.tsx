@@ -47,32 +47,36 @@ const GoogleLogin: FC<GoogleLoginProps> = ({
   const handleSuccess = (data: UserDetailsProps) => {
     const { given_name, picture, email, hd } = data
 
-    if (!hd || hd.toUpperCase() !== process.env.REACT_APP_FILTER_DOMAIN) {
-      updateMessage({
-        message: t('message.useDataparEmail'),
-        variant: 'primary',
+    // if (!hd || hd.toUpperCase() !== process.env.REACT_APP_FILTER_DOMAIN) {
+    //   updateMessage({
+    //     message: t('message.useDataparEmail'),
+    //     variant: 'primary',
+    //   })
+    //   localStorage.clear()
+    //   updateLoginInfo({ signInRejected: true })
+    //   setIsGoogleApiLoading(false)
+    //   googleLogout()
+    // } else {
+    const domainFromEnv = process.env.REACT_APP_FILTER_DOMAIN
+    //const isSameDomain = hd!.toUpperCase() === domainFromEnv
+
+    if (domainFromEnv === '' /*|| isSameDomain*/) {
+      updateLoginInfo({
+        picture,
+        email,
+        name: given_name,
+        loggedIn: true,
+        signInRejected: false,
       })
+    } else {
       localStorage.clear()
       updateLoginInfo({ signInRejected: true })
       setIsGoogleApiLoading(false)
       googleLogout()
-    } else {
-      const domainFromEnv = process.env.REACT_APP_FILTER_DOMAIN
-      const isSameDomain = hd!.toUpperCase() === domainFromEnv
-
-      if (domainFromEnv === '' || isSameDomain) {
-        updateLoginInfo({
-          picture,
-          email,
-          name: given_name,
-          loggedIn: true,
-          signInRejected: false,
-        })
-      } else {
-        updateMessage({ message: t('message.invalidDomain', { hd }), variant: 'primary' })
-      }
-      setIsGoogleApiLoading(false)
+      updateMessage({ message: t('message.invalidDomain', { hd }), variant: 'primary' })
     }
+    setIsGoogleApiLoading(false)
+    // }
   }
 
   const onSuccess = async (tokenResponse: TokenResponseProps) => {
