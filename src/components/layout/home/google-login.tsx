@@ -5,6 +5,7 @@ import React, { Dispatch, FC } from 'react'
 import { useEffectOnce } from 'utils/use-effect-once'
 import { MessageProps } from './'
 import { AWSInfoProps } from './constants'
+import { useTranslation } from 'react-i18next'
 
 interface GoogleLoginProps {
   updateLoginInfo: (info: Partial<AWSInfoProps>) => void
@@ -28,6 +29,7 @@ const GoogleLogin: FC<GoogleLoginProps> = ({
   setIsGoogleApiLoading,
   awsInfo,
 }) => {
+  const { t } = useTranslation('form')
   const token = localStorage.getItem('token')
 
   const getUserDetails = async (token: string): Promise<UserDetailsProps> => {
@@ -36,7 +38,6 @@ const GoogleLogin: FC<GoogleLoginProps> = ({
     } = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
       headers: {
         Authorization: `Bearer ${token}`,
-        'Set-Cookie': 'SameSite=None; Secure',
       },
     })
     setIsGoogleApiLoading(false)
@@ -48,7 +49,7 @@ const GoogleLogin: FC<GoogleLoginProps> = ({
 
     if (!hd || hd.toUpperCase() !== process.env.REACT_APP_FILTER_DOMAIN) {
       updateMessage({
-        message: 'Please use your Datapar Gmail account.',
+        message: t('message.useDataparEmail'),
         variant: 'primary',
       })
       localStorage.clear()
@@ -68,7 +69,7 @@ const GoogleLogin: FC<GoogleLoginProps> = ({
           signInRejected: false,
         })
       } else {
-        updateMessage({ message: `The domain ${hd} is not allowed.`, variant: 'primary' })
+        updateMessage({ message: t('message.invalidDomain', { hd }), variant: 'primary' })
       }
       setIsGoogleApiLoading(false)
     }
@@ -95,10 +96,9 @@ const GoogleLogin: FC<GoogleLoginProps> = ({
   return (
     <>
       <Typography variant="body1" color="white">
-        Let&apos;s start by logging in with your Datapar Gmail credentials. You&apos;ll be
-        redirected to Google&apos;s authentication page.
+        {t('title.notLogged')}
       </Typography>
-      <Button onClick={() => googleLogin()}>Login with Google</Button>
+      <Button onClick={() => googleLogin()}>{t('title.loginButton')}</Button>
     </>
   )
 }

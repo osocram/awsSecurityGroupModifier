@@ -116,7 +116,7 @@ export const StyledButton = styled.button<Partial<ButtonProps>>`
     return css`
       outline: none;
       border: 1px solid ${themeColor.borderColor};
-      background: ${themeColor.backgroundColor};
+      background-color: ${themeColor.backgroundColor};
       border-radius: 0.25rem;
       color: ${themeColor.color};
       cursor: pointer;
@@ -124,7 +124,7 @@ export const StyledButton = styled.button<Partial<ButtonProps>>`
       padding: ${sizes[size!].padding};
 
       &:hover {
-        background: ${themeColor.hover.backgroundColor};
+        background-color: ${themeColor.hover.backgroundColor};
       }
 
       &:focus {

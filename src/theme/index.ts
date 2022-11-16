@@ -37,8 +37,11 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    
   }
   body {
+    max-width: 100vw;
+    overflow-x: hidden;
     background-color: ${theme.colors.background.body};
     color: ${theme.colors.text};
     font-family: "Poppins", sans-serif;

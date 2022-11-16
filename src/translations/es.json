@@ -1,0 +1,36 @@
+{
+  "button": {
+    "loading": "Cargando",
+    "loggedOut": "Cerrar sesión",
+    "updateSG": "Actualizar AWS SG"
+  },
+  "form": {
+    "message": {
+      "fetchingIP": "Por favor, espera mientras configuramos todo por ti...",
+      "invalidDomain": "El dominio <strong>{{hd}}</strong> no está permitido.",
+      "ipRetrieved": "Su dirección IP <strong><i>{{ip}}</i></strong> de <strong><i>{{city}}, {{state}}</i></strong> se ha recuperado correctamente.",
+      "loggedOut": "Ha sido desconectado exitosamente.",
+      "useDataparEmail": "Utilice su cuenta de Gmail de Datapar."
+    },
+    "title": {
+      "ipSuccessfullyRetrieved": "Ahora puede actualizar el grupo de seguridad de AWS para permitir que su IP acceda a las características de Datapar. <br /> <br /> ¿Qué quieres hacer?",
+      "loginButton": "Iniciar sesión con Google",
+      "notLogged": "Comencemos iniciando sesión con sus credenciales de Gmail de Datapar. Será redirigido a la página de autenticación de Google."
+    }
+  },
+  "header": {
+    "language": {
+      "en": "Inglés",
+      "es": "Español",
+      "pt": "Portugués"
+    }
+  },
+  "home": {
+    "title": "Modificador de Grupo de Seguridad de AWS",
+    "title.three": "Aquí puede agregar o actualizar su dirección IP al grupo de seguridad de Datapar.",
+    "title.two": "Una herramienta simple para ayudarlo a administrar sus grupos de seguridad de AWS."
+  },
+  "profile": {
+    "welcome": "Bienvenido, {{name}}!"
+  }
+}

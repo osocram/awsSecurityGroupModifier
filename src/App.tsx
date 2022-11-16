@@ -1,11 +1,15 @@
+import LanguageSelector from 'components/common/language'
 import { Flexbox, IntroSection, Home } from './components'
 
 function App() {
   return (
-    <Flexbox fullScreen justifyContent="space-evenly">
-      <IntroSection />
-      <Home />
-    </Flexbox>
+    <>
+      <LanguageSelector />
+      <Flexbox fullScreen justifyContent="space-evenly">
+        <IntroSection />
+        <Home />
+      </Flexbox>
+    </>
   )
 }
 

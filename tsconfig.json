@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "baseUrl": "./src"
   },
-  "include": ["src", "setupProxy.ts"]
+  "include": ["src", "setupProxy.ts", "src/translations/react-i18next.d.ts"]
 }

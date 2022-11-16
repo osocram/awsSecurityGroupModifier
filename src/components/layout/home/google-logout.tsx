@@ -3,6 +3,7 @@ import { Button } from 'components/common'
 import { FC } from 'react'
 import { MessageProps } from './'
 import { AWSInfoProps, initialConfig } from './constants'
+import { useTranslation } from 'react-i18next'
 
 interface GoogleLogoutProps {
   updateLoginInfo: (info: Partial<AWSInfoProps>, reset?: boolean) => void
@@ -10,8 +11,9 @@ interface GoogleLogoutProps {
 }
 
 const GoogleLogout: FC<GoogleLogoutProps> = ({ updateLoginInfo, updateMessage }) => {
+  const { t } = useTranslation(['form', 'button'])
   const handleLogout = () => {
-    updateMessage({ message: 'You have been logged out.', variant: 'primary' })
+    updateMessage({ message: t('message.loggedOut', { ns: 'form' }), variant: 'primary' })
     googleLogout()
     localStorage.clear()
     updateLoginInfo(initialConfig, true)
@@ -19,7 +21,7 @@ const GoogleLogout: FC<GoogleLogoutProps> = ({ updateLoginInfo, updateMessage })
 
   return (
     <Button variant="outlined" onClick={() => handleLogout()}>
-      Logout
+      {t('loggedOut', { ns: 'button' })}
     </Button>
   )
 }

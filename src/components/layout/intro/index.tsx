@@ -1,7 +1,9 @@
 import { Flexbox, Typography } from '../../common'
 import { DataparBrandLight } from 'assets'
+import { useTranslation } from 'react-i18next'
 
 const IntroSection = () => {
+  const { t } = useTranslation('home')
   return (
     <Flexbox
       fullHeight
@@ -13,13 +15,13 @@ const IntroSection = () => {
     >
       <img src={DataparBrandLight} alt="Datapar" height="70px" />
       <Typography variant="h1" as="h1" color="white">
-        AWS Security Group Modifier
+        {t('title')}
       </Typography>
       <Typography variant="h4" as="h4">
-        A simple tool to help you manage our AWS Security Groups.
+        {t('title.two')}
       </Typography>
       <Typography variant="h5" as="h5">
-        Here you can add or update your IP address to the Datapar security group.
+        {t('title.three')}
       </Typography>
     </Flexbox>
   )

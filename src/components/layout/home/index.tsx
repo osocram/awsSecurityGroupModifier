@@ -2,13 +2,14 @@ import axios from 'axios'
 import { Flexbox, LoaderSpinner, Typography } from 'components/common'
 
 import { TypographyProps } from 'components/common/typography'
-import { useEffect, useState } from 'react'
+import { createElement, useEffect, useState } from 'react'
 import RegisterIP from '../register-ip'
 import { AWSInfoProps, initialConfig } from './constants'
 import GoogleLogin from './google-login'
 import GoogleLogout from './google-logout'
 import AppMessages from './message'
 import UserProfile from './profile'
+import { useTranslation } from 'react-i18next'
 
 export type MessageProps = {
   message: string
@@ -16,6 +17,7 @@ export type MessageProps = {
 }
 
 const LoginSection = () => {
+  const { t } = useTranslation('form')
   const [awsInfo, setAwsInfo] = useState<AWSInfoProps>(initialConfig)
   const [message, setMessageState] = useState<MessageProps>({
     message: '',
@@ -38,7 +40,11 @@ const LoginSection = () => {
     const res = await axios.get('https://geolocation-db.com/json/')
     updateLoginInfo({ ip: res.data.IPv4 })
     updateMessage({
-      message: `Your IP address <strong>(${res.data.IPv4})</strong> from <strong>${res.data.city}, ${res.data.state}</strong> has been retrieved. `,
+      message: t('message.ipRetrieved', {
+        ip: res.data.IPv4,
+        city: res.data.city,
+        state: res.data.state,
+      }),
       variant: 'secondary',
     })
   }
@@ -46,7 +52,7 @@ const LoginSection = () => {
   useEffect(() => {
     if (awsInfo.loggedIn && !awsInfo.ip && !awsInfo.signInRejected) {
       updateMessage({
-        message: 'Please wait while we set everything for you...',
+        message: t('message.fetchingIP'),
         variant: 'secondary',
       })
       getData()
@@ -80,9 +86,11 @@ const LoginSection = () => {
       {awsInfo.loggedIn && awsInfo.ip && (
         <>
           <Typography variant="body1">
-            Now you can update the AWS Security Group to allow your IP to access
-            Datapar&apos;s features. <br />
-            <br /> What do you want to do?
+            {createElement('span', {
+              dangerouslySetInnerHTML: {
+                __html: t('title.ipSuccessfullyRetrieved'),
+              },
+            })}
           </Typography>
           <Flexbox direction="row" alignItems="center" gap="1rem" noWrap>
             <RegisterIP {...{ awsInfo, updateMessage }} />
